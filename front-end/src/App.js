@@ -1,4 +1,6 @@
 // import './App.css';
+import React, {Fragment} from 'react';
+import {BrowserRouter as Router, Switch, Route,Redirect} from 'react-router-dom'; 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
@@ -6,10 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import ShowNotices from './components/ShowNotice/showNotice';
 import AddNotices from './components/AddNotice/addNotice';
-import {BrowserRouter as Router, Switch, Route,Redirect} from 'react-router-dom'; 
-function App() {
-  return (
 
+
+
+function App() {
+  return <Fragment>
     <div className="App">
       <Router>
         <Navbar bg="dark" variant="dark">
@@ -22,13 +25,12 @@ function App() {
         <Switch>
           <Route exact path="/add" component={AddNotices}/>
           <Route exact path="/show" component={ShowNotices}/>
+          <Route exact path="/show:date" component={ShowNotices}/>
           <Redirect from="*" to="/add" />
         </Switch>
-      </Router>
-
-      
+      </Router>     
     </div>
-  );
+  </Fragment>
 }
 
 export default App;

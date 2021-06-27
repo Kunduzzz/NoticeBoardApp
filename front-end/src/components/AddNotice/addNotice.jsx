@@ -22,7 +22,7 @@ class AddNotices extends Component {
 
     submitHandler = (e) => {
         e.preventDefault()
-
+        console.log(this.state);
         axios.post('http://localhost:5000/notice', this.state)
     }
     

@@ -14,8 +14,9 @@ db.authenticate()
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded());
 
+
+// Post Notices
 app.post("/notice",async(req,res)=>{
   let { noticePoster, noticeText, expiryDate, hostelName } = req.body;
 
@@ -35,7 +36,7 @@ app.get("/notices",async(req,res)=>{
   try {
       const notice = await Notice.findAll()
 
-      return res.json({notice})
+      return res.json(notice)
 
   } catch (error) {
       console.log(`Error`,error.message)
@@ -46,13 +47,13 @@ app.get("/notices",async(req,res)=>{
   // Get All Notices by Date (Not Implemented)
 app.get("/notice/:date",async(req,res)=>{
   try {
-      const {date} =req.params;
+      const {date} = req.params;
       const notice = await Notice.findAll({
           where:{
               expiryDate:date
           }
       })
-      return res.json({notice})
+      return res.json(notice)
   } catch (error) {
       console.log(`Error`,error.message)
       return res.status(500).json({err:error.message})
